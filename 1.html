@@ -1,0 +1,48 @@
+<html>
+  <head>
+    <style type="text/css">
+      body {
+        padding: 50px;
+      }
+      .remove-item {
+        margin-left: 1em;
+      }
+    </style>
+  </head>
+
+  <body class="yui3-skin-sam">
+
+    <input id="input-item" type="text" placeholder="Input an item here"/>
+    <button id="add-item">add</button>
+
+    <div>
+      <h1>Items:</h1>
+      <ol id='items-list'>
+      </ol>
+    </div>
+
+  </body>
+
+  <script src="app.js"></script>
+  <script>
+    goog.require('app');
+
+    // presentation layer
+
+    document.getElementById('add-item').onclick = function(ev) {
+      var input = document.getElementById('input-item'),
+          new_item = input.value;
+
+      app.add_item(new_item);
+      input.value = "";
+    }
+
+    document.onclick = function(ev) {
+      if (ev.target.className === 'remove-item') {
+        var item_id = ev.target.getAttribute('data-item-id');
+        app.remove_item(item_id);
+      }
+    }
+  </script>
+
+</html>
